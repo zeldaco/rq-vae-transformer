@@ -1,0 +1,690 @@
+Run started:2025-04-16 21:09:13.655139
+
+Test results:
+>> Issue: [B614:pytorch_load] Use of unsafe PyTorch load
+   Severity: Medium   Confidence: High
+   CWE: CWE-502 (https://cwe.mitre.org/data/definitions/502.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b614_pytorch_load.html
+   Location: .\compute_rfid.py:34:11
+33	    model, _ = create_model(config.arch, ema=False)
+34	    ckpt = torch.load(path)['state_dict_ema'] if ema else torch.load(path)['state_dict']
+35	    model.load_state_dict(ckpt)
+
+--------------------------------------------------
+>> Issue: [B614:pytorch_load] Use of unsafe PyTorch load
+   Severity: Medium   Confidence: High
+   CWE: CWE-502 (https://cwe.mitre.org/data/definitions/502.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b614_pytorch_load.html
+   Location: .\compute_rfid.py:34:58
+33	    model, _ = create_model(config.arch, ema=False)
+34	    ckpt = torch.load(path)['state_dict_ema'] if ema else torch.load(path)['state_dict']
+35	    model.load_state_dict(ckpt)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\data\cc3m\download_cc3m.py:42:0
+41	
+42	assert args.split in ['train', 'val']
+43	if args.split == 'train':
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\data\cc3m\download_cc3m.py:45:4
+44	    file_path = os.path.join(current_dir, 'Train_GCC-training.tsv')
+45	    assert os.path.exists(file_path), 'download tsv files from https://ai.google.com/research/ConceptualCaptions/download'
+46	else:
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\data\cc3m\download_cc3m.py:48:4
+47	    file_path = os.path.join(current_dir, 'Validation_GCC-1.1.0-Validation.tsv')
+48	    assert os.path.exists(file_path), 'download tsv files from https://ai.google.com/research/ConceptualCaptions/download'
+49	
+
+--------------------------------------------------
+>> Issue: [B324:hashlib] Use of weak MD5 hash for security. Consider usedforsecurity=False
+   Severity: High   Confidence: High
+   CWE: CWE-327 (https://cwe.mitre.org/data/definitions/327.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b324_hashlib.html
+   Location: .\data\cc3m\download_cc3m.py:66:19
+65	        url, caption = url_caption
+66	        filename = hashlib.md5(url.encode('utf-8')).hexdigest()
+67	        filepath = os.path.join(base_dir, filename)  # concat to get filepath
+
+--------------------------------------------------
+>> Issue: [B501:request_with_no_cert_validation] Call to requests with verify=False disabling SSL certificate checks, security issue.
+   Severity: High   Confidence: High
+   CWE: CWE-295 (https://cwe.mitre.org/data/definitions/295.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b501_request_with_no_cert_validation.html
+   Location: .\data\cc3m\download_cc3m.py:69:18
+68	        if not os.path.isfile(filepath):
+69	            req = requests.get(url, stream=True, timeout=3, verify=False).raw
+70	            image = Image.open(req).convert('RGB')
+
+--------------------------------------------------
+>> Issue: [B614:pytorch_load] Use of unsafe PyTorch load
+   Severity: Medium   Confidence: High
+   CWE: CWE-502 (https://cwe.mitre.org/data/definitions/502.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b614_pytorch_load.html
+   Location: .\main_sampling_fid.py:153:15
+152	    if ema:
+153	        ckpt = torch.load(path, map_location='cpu')['state_dict_ema']
+154	    else:
+
+--------------------------------------------------
+>> Issue: [B614:pytorch_load] Use of unsafe PyTorch load
+   Severity: Medium   Confidence: High
+   CWE: CWE-502 (https://cwe.mitre.org/data/definitions/502.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b614_pytorch_load.html
+   Location: .\main_sampling_fid.py:155:15
+154	    else:
+155	        ckpt = torch.load(path, map_location='cpu')['state_dict']
+156	    model.load_state_dict(ckpt)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\main_sampling_fid.py:189:4
+188	
+189	    assert args.n_samples % n_labels == 0
+190	    assert args.n_samples % (args.batch_size * distenv.world_size) == 0
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\main_sampling_fid.py:190:4
+189	    assert args.n_samples % n_labels == 0
+190	    assert args.n_samples % (args.batch_size * distenv.world_size) == 0
+191	
+
+--------------------------------------------------
+>> Issue: [B614:pytorch_load] Use of unsafe PyTorch load
+   Severity: Medium   Confidence: High
+   CWE: CWE-502 (https://cwe.mitre.org/data/definitions/502.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b614_pytorch_load.html
+   Location: .\main_stage1.py:86:15
+85	    if not args.load_path == '':
+86	        ckpt = torch.load(args.load_path, map_location='cpu')
+87	        model.load_state_dict(ckpt['state_dict'])
+
+--------------------------------------------------
+>> Issue: [B614:pytorch_load] Use of unsafe PyTorch load
+   Severity: Medium   Confidence: High
+   CWE: CWE-502 (https://cwe.mitre.org/data/definitions/502.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b614_pytorch_load.html
+   Location: .\notebooks\notebook_utils.py:62:15
+61	    if ema:
+62	        ckpt = torch.load(path, map_location='cpu')['state_dict_ema']
+63	    else:
+
+--------------------------------------------------
+>> Issue: [B614:pytorch_load] Use of unsafe PyTorch load
+   Severity: Medium   Confidence: High
+   CWE: CWE-502 (https://cwe.mitre.org/data/definitions/502.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b614_pytorch_load.html
+   Location: .\notebooks\notebook_utils.py:64:15
+63	    else:
+64	        ckpt = torch.load(path, map_location='cpu')['state_dict']
+65	    model.load_state_dict(ckpt)
+
+--------------------------------------------------
+>> Issue: [B403:blacklist] Consider possible security implications associated with pickle module.
+   Severity: Low   Confidence: High
+   CWE: CWE-502 (https://cwe.mitre.org/data/definitions/502.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_imports.html#b403-import-pickle
+   Location: .\rqvae\img_datasets\lsun.py:18:0
+17	from pathlib import Path
+18	import pickle
+19	import string
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\rqvae\img_datasets\lsun.py:39:8
+38	
+39	        assert category_name in LSUNClass.valid_categories
+40	        root = Path(root) / LSUNClass.subpaths[category_name]
+
+--------------------------------------------------
+>> Issue: [B301:blacklist] Pickle and modules that wrap it can be unsafe when used to deserialize untrusted data, possible security issue.
+   Severity: Medium   Confidence: High
+   CWE: CWE-502 (https://cwe.mitre.org/data/definitions/502.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b301-pickle
+   Location: .\rqvae\img_datasets\lsun.py:51:24
+50	        if os.path.isfile(cache_file):
+51	            self.keys = pickle.load(open(cache_file, "rb"))
+52	        else:
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\rqvae\losses\vqgan\discriminator.py:12:8
+11	                 allow_reverse_init=False):
+12	        assert affine
+13	        super().__init__()
+
+--------------------------------------------------
+>> Issue: [B614:pytorch_load] Use of unsafe PyTorch load
+   Severity: Medium   Confidence: High
+   CWE: CWE-502 (https://cwe.mitre.org/data/definitions/502.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b614_pytorch_load.html
+   Location: .\rqvae\losses\vqgan\lpips.py:29:29
+28	        ckpt = get_ckpt_path(name)
+29	        self.load_state_dict(torch.load(ckpt, map_location=torch.device("cpu")), strict=False)
+30	        print("loaded pretrained LPIPS loss from {}".format(ckpt))
+
+--------------------------------------------------
+>> Issue: [B614:pytorch_load] Use of unsafe PyTorch load
+   Severity: Medium   Confidence: High
+   CWE: CWE-502 (https://cwe.mitre.org/data/definitions/502.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b614_pytorch_load.html
+   Location: .\rqvae\losses\vqgan\lpips.py:38:30
+37	        ckpt = get_ckpt_path(name)
+38	        model.load_state_dict(torch.load(ckpt, map_location=torch.device("cpu")), strict=False)
+39	        return model
+
+--------------------------------------------------
+>> Issue: [B113:request_without_timeout] Call to requests without timeout
+   Severity: Medium   Confidence: Low
+   CWE: CWE-400 (https://cwe.mitre.org/data/definitions/400.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b113_request_without_timeout.html
+   Location: .\rqvae\losses\vqgan\lpips_utils.py:21:9
+20	    os.makedirs(os.path.split(local_path)[0], exist_ok=True)
+21	    with requests.get(url, stream=True) as r:
+22	        total_size = int(r.headers.get("content-length", 0))
+
+--------------------------------------------------
+>> Issue: [B324:hashlib] Use of weak MD5 hash for security. Consider usedforsecurity=False
+   Severity: High   Confidence: High
+   CWE: CWE-327 (https://cwe.mitre.org/data/definitions/327.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b324_hashlib.html
+   Location: .\rqvae\losses\vqgan\lpips_utils.py:34:11
+33	        content = f.read()
+34	    return hashlib.md5(content).hexdigest()
+35	
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\rqvae\losses\vqgan\lpips_utils.py:38:4
+37	def get_ckpt_path(name, root=None, check=False):
+38	    assert name in URL_MAP
+39	    if root is None:
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\rqvae\losses\vqgan\lpips_utils.py:47:8
+46	        md5 = md5_hash(path)
+47	        assert md5 == MD5_MAP[name], md5
+48	    return path
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\rqvae\metrics\clip_score.py:76:4
+75	    # possibly has some duplicates at the end due to the distributed sampler.
+76	    assert len(img_dataset) >= len(txt_dataset)
+77	    img_dataset = torch.utils.data.Subset(img_dataset, np.arange(len(txt_dataset)))
+
+--------------------------------------------------
+>> Issue: [B403:blacklist] Consider possible security implications associated with pickle5 module.
+   Severity: Low   Confidence: High
+   CWE: CWE-502 (https://cwe.mitre.org/data/definitions/502.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_imports.html#b403-import-pickle
+   Location: .\rqvae\metrics\fid.py:18:4
+17	if int(sys.version.split('.')[1]) < 8:
+18	    import pickle5 as pickle
+19	else:
+
+--------------------------------------------------
+>> Issue: [B403:blacklist] Consider possible security implications associated with pickle module.
+   Severity: Low   Confidence: High
+   CWE: CWE-502 (https://cwe.mitre.org/data/definitions/502.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_imports.html#b403-import-pickle
+   Location: .\rqvae\metrics\fid.py:20:4
+19	else:
+20	    import pickle
+21	
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\rqvae\metrics\fid.py:89:4
+88	
+89	    assert mu1.shape == mu2.shape, \
+90	        'Training and test mean vectors have different lengths'
+91	    assert sigma1.shape == sigma2.shape, \
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\rqvae\metrics\fid.py:91:4
+90	        'Training and test mean vectors have different lengths'
+91	    assert sigma1.shape == sigma2.shape, \
+92	        'Training and test covariances have different dimensions'
+93	
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\rqvae\metrics\inception.py:76:8
+75	
+76	        assert self.last_needed_block <= 3, \
+77	            'Last possible output block index is 3'
+78	
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\rqvae\models\rqtransformer\attentions.py:28:8
+27	        super().__init__()
+28	        assert version == 'v1' or version == 'v2'
+29	
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\rqvae\models\rqtransformer\attentions.py:46:8
+45	        super().__init__()
+46	        assert config.embed_dim % config.n_head == 0
+47	        # key, query, value projections for all heads
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\rqvae\models\rqtransformer\attentions.py:64:12
+63	        if not caching:
+64	            assert past_kv is None
+65	
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\rqvae\models\rqtransformer\primitives.py:67:8
+66	        (*rem, D) = x.shape
+67	        assert D == len(self.num_embeddings_per_dict)
+68	
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\rqvae\models\rqtransformer\primitives.py:142:12
+141	        if indices:
+142	            assert n_vectors == len(indices)
+143	            weight = self.weight[indices]
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\rqvae\models\rqtransformer\transformers.py:50:12
+49	            # various codebooks sizes are not supported for shared tok or cls embedding
+50	            assert [config.vocab_size[0]] * len(config.vocab_size) == config.vocab_size
+51	
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\rqvae\models\rqtransformer\transformers.py:59:8
+58	        self.block_size_cond = max(config.block_size_cond, 1)
+59	        assert not (self.block_size_cond > 1 and self.vocab_size_cond == 1)
+60	        self.cond_emb = nn.Embedding(self.vocab_size_cond, config.embed_dim)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\rqvae\models\rqtransformer\transformers.py:310:8
+309	
+310	        assert self.block_size == partial_sample.shape[1:]
+311	
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\rqvae\models\rqtransformer\transformers.py:333:8
+332	        xs = partial_sample.clone()
+333	        assert xs.shape[1:] == torch.Size([H, W, D])
+334	
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\rqvae\models\rqtransformer\transformers.py:384:8
+383	    def compute_cond_loss(self, cond_logits, conds):
+384	        assert cond_logits.shape[1] == (conds.shape[1] - 1)
+385	
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\rqvae\models\rqvae\quantizations.py:49:8
+48	        inputs_shape = inputs.shape
+49	        assert inputs_shape[-1] == embed_dim
+50	
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\rqvae\models\rqvae\quantizations.py:196:8
+195	        self.decay = decay if isinstance(decay, Iterable) else [decay for _ in range(self.code_shape[-1])]
+196	        assert len(self.n_embed) == self.code_shape[-1]
+197	        assert len(self.decay) == self.code_shape[-1]
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\rqvae\models\rqvae\quantizations.py:197:8
+196	        assert len(self.n_embed) == self.code_shape[-1]
+197	        assert len(self.decay) == self.code_shape[-1]
+198	
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\rqvae\models\rqvae\quantizations.py:299:8
+298	    def embed_code(self, code):
+299	        assert code.shape[1:] == self.code_shape
+300	        
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\rqvae\models\rqvae\quantizations.py:321:8
+320	        # spatial resolution can be different in the sampling process
+321	        assert code.shape[-1] == self.code_shape[-1]
+322	        
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\rqvae\models\rqvae\quantizations.py:349:8
+348	
+349	        assert code.shape[1:] == self.code_shape
+350	        assert code_idx < code.shape[-1]
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\rqvae\models\rqvae\quantizations.py:350:8
+349	        assert code.shape[1:] == self.code_shape
+350	        assert code_idx < code.shape[-1]
+351	        
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\rqvae\models\rqvae\rqvae.py:40:8
+39	
+40	        assert loss_type in ['mse', 'l1']
+41	
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\rqvae\models\rqvae\rqvae.py:99:8
+98	    def get_soft_codes(self, xs, temp=1.0, stochastic=False):
+99	        assert hasattr(self.quantizer, 'get_soft_codes')
+100	
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\rqvae\trainers\trainer_rqvae.py:45:8
+44	
+45	        assert len(self.config.arch.hparams.code_shape) in [2, 3]
+46	
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\rqvae\txtimg_datasets\cc3m.py:30:8
+29	    def __init__(self, root, split, tok_name, transform=None, context_length=77, dropout=None):
+30	        assert split in self.splits, f'{split} is not in {self.splits}'
+31	        super().__init__(root, transform=transform)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\rqvae\txtimg_datasets\cc3m.py:46:12
+45	            toks = line.strip().split('\t')
+46	            assert len(toks) == 2
+47	            (imgpath, text) = toks
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\rqvae\txtimg_datasets\cc3m.py:76:12
+75	            toks = line.strip().split('\t')
+76	            assert len(toks) == 2
+77	            (_, text) = toks
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\rqvae\txtimg_datasets\cc3m.py:105:8
+104	    def __init__(self, root, split, transform=None):
+105	        assert split in self.splits, f'{split} is not in {self.splits}'
+106	        super().__init__(root, transform=transform)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\rqvae\txtimg_datasets\cc3m.py:113:12
+112	            toks = line.strip().split('\t')
+113	            assert len(toks) == 2
+114	            (imgpath, text) = toks
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\rqvae\txtimg_datasets\coco.py:28:8
+27	    def __init__(self, root, split, tok_name, transform=None, context_length=77, dropout=None):
+28	        assert split in self.splits, f'{split} is not in {self.splits}'
+29	        super().__init__(root, transform=transform)
+
+--------------------------------------------------
+>> Issue: [B311:blacklist] Standard pseudo-random generators are not suitable for security/cryptographic purposes.
+   Severity: Low   Confidence: High
+   CWE: CWE-330 (https://cwe.mitre.org/data/definitions/330.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b311-random
+   Location: .\rqvae\txtimg_datasets\coco.py:54:22
+53	        if self.split == 'train':
+54	            rnd_txt = random.randint(0, len(text)-1)
+55	            text = text[rnd_txt]
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\rqvae\txtimg_datasets\coco.py:86:8
+85	    def __init__(self, root, split, transform=None):
+86	        assert split in self.splits, f'{split} is not in {self.splits}'
+87	        super().__init__(root, transform=transform)
+
+--------------------------------------------------
+>> Issue: [B106:hardcoded_password_funcarg] Possible hardcoded password: '[UNK]'
+   Severity: Low   Confidence: Medium
+   CWE: CWE-259 (https://cwe.mitre.org/data/definitions/259.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b106_hardcoded_password_funcarg.html
+   Location: .\rqvae\txtimg_datasets\tokenizers\__init__.py:30:26
+29	                                merges_filename=gpt2_merges()),
+30	    'bpe16k_huggingface': partial(CharBPETokenizer.from_file,
+31	                                  vocab_filename=huggingface_bpe_16k_vocab(),
+32	                                  merges_filename=huggingface_bpe_16k_merges(),
+33	                                  unk_token="[UNK]"),
+34	    'bpe30k_huggingface': partial(CharBPETokenizer.from_file,
+
+--------------------------------------------------
+>> Issue: [B106:hardcoded_password_funcarg] Possible hardcoded password: '[UNK]'
+   Severity: Low   Confidence: Medium
+   CWE: CWE-259 (https://cwe.mitre.org/data/definitions/259.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b106_hardcoded_password_funcarg.html
+   Location: .\rqvae\txtimg_datasets\tokenizers\__init__.py:34:26
+33	                                  unk_token="[UNK]"),
+34	    'bpe30k_huggingface': partial(CharBPETokenizer.from_file,
+35	                                  vocab_filename=huggingface_bpe_30k_vocab(),
+36	                                  merges_filename=huggingface_bpe_30k_merges(),
+37	                                  unk_token="[UNK]")
+38	}
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\rqvae\txtimg_datasets\tokenizers\simple_tokenizer.py:68:8
+67	
+68	        assert lowercase
+69	        bpe_path = default_bpe() if bpe_path is None else bpe_path
+
+--------------------------------------------------
+>> Issue: [B311:blacklist] Standard pseudo-random generators are not suitable for security/cryptographic purposes.
+   Severity: Low   Confidence: High
+   CWE: CWE-330 (https://cwe.mitre.org/data/definitions/330.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_calls.html#b311-random
+   Location: .\rqvae\txtimg_datasets\tokenizers\simple_tokenizer.py:143:20
+142	        if end > 0:
+143	            start = random.randint(0, end)
+144	
+
+--------------------------------------------------
+>> Issue: [B506:yaml_load] Use of unsafe yaml load. Allows instantiation of arbitrary objects. Consider yaml.safe_load().
+   Severity: Medium   Confidence: High
+   CWE: CWE-20 (https://cwe.mitre.org/data/definitions/20.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b506_yaml_load.html
+   Location: .\rqvae\utils\config.py:19:17
+18	    with open(config_path) as f:
+19	        config = yaml.load(f, Loader=yaml.FullLoader)
+20	        config = easydict_to_dict(config)
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\rqvae\utils\dist.py:46:8
+45	                                timeout=datetime.timedelta(0, args.timeout))
+46	        assert (args.world_size == dist.get_world_size())
+47	        print(
+
+--------------------------------------------------
+>> Issue: [B101:assert_used] Use of assert detected. The enclosed code will be removed when compiling to optimised byte code.
+   Severity: Low   Confidence: High
+   CWE: CWE-703 (https://cwe.mitre.org/data/definitions/703.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/plugins/b101_assert_used.html
+   Location: .\rqvae\utils\profiler.py:15:12
+14	        else:
+15	            assert opt in self.opts_model_size, f'{opt} is not in {self.opts_model_size}'
+16	
+
+--------------------------------------------------
+>> Issue: [B403:blacklist] Consider possible security implications associated with pickle module.
+   Severity: Low   Confidence: High
+   CWE: CWE-502 (https://cwe.mitre.org/data/definitions/502.html)
+   More Info: https://bandit.readthedocs.io/en/1.8.3/blacklists/blacklist_imports.html#b403-import-pickle
+   Location: .\rqvae\utils\utils.py:2:0
+1	import random
+2	import pickle
+3	
+
+--------------------------------------------------
+
+Code scanned:
+	Total lines of code: 5092
+	Total lines skipped (#nosec): 0
+	Total potential issues skipped due to specifically being disabled (e.g., #nosec BXXX): 0
+
+Run metrics:
+	Total issues (by severity):
+		Undefined: 0
+		Low: 51
+		Medium: 12
+		High: 3
+	Total issues (by confidence):
+		Undefined: 0
+		Low: 1
+		Medium: 2
+		High: 63
+Files skipped (0):
